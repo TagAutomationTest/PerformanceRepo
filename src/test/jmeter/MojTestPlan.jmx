@@ -51,8 +51,8 @@
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Authentication">
         <intProp name="ThreadGroup.num_threads">1</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
-        <longProp name="ThreadGroup.duration">60</longProp>
+        <intProp name="ThreadGroup.ramp_time">2</intProp>
+        <longProp name="ThreadGroup.duration">200</longProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -186,8 +186,8 @@
         <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Moj Test Cases">
-        <intProp name="ThreadGroup.num_threads">10</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <intProp name="ThreadGroup.num_threads">200</intProp>
+        <intProp name="ThreadGroup.ramp_time">400</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
@@ -196,88 +196,42 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="قائمة الطلبات "/>
-        <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="كل  الطلبات ">
-            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
-            <stringProp name="HTTPSampler.port">${Port}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${protocol  type}</stringProp>
-            <stringProp name="HTTPSampler.path">/api/Workflows/GetRequestsList</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&#xd;
-  &quot;dateFrom&quot;: null,&#xd;
-  &quot;dateTo&quot;: null,&#xd;
-  &quot;pageNumber&quot;: 1,&#xd;
-  &quot;pageSize&quot;: 100,&#xd;
-  &quot;orderColumnNumber&quot;: 1,&#xd;
-  &quot;orderColumnDirection&quot;: null,&#xd;
-  &quot;requestStatusParentId&quot;: 0,&#xd;
-  &quot;searchParams&quot;: null,&#xd;
-  &quot;requestCode&quot;: null,&#xd;
-  &quot;workflowIdList&quot;: [],&#xd;
-  &quot;requestCreatedByList&quot;: [],&#xd;
-  &quot;requestStatusIdLIst&quot;: [],&#xd;
-  &quot;executionRequestStatusList&quot;: [],&#xd;
-  &quot;crmTicketNumber&quot;: null,&#xd;
-  &quot;daemTicketNumber&quot;: null&#xd;
-}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-          </HTTPSamplerProxy>
-          <hashTree/>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
         <RecordingController guiclass="RecordController" testclass="RecordingController" testname="لوحات القياده "/>
         <hashTree>
           <RecordingController guiclass="RecordController" testclass="RecordingController" testname="مراقبة الاشعارات والتذاكر"/>
           <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="عرض الاعداد الاجماليه للاشعارات والتذاكر ">
+              <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+              <stringProp name="HTTPSampler.port">${Port}</stringProp>
+              <stringProp name="HTTPSampler.protocol">${protocol  type}</stringProp>
+              <stringProp name="HTTPSampler.path">/api/NotificationsMonitoring/getNotificatioMonitorCounts</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+  &quot;searchCriteria&quot;: {&#xd;
+    &quot;notificationType&quot;: 1,&#xd;
+    &quot;subModuleId&quot;: null,&#xd;
+    &quot;criticality&quot;: null,&#xd;
+    &quot;userIds&quot;: null,&#xd;
+    &quot;dateFrom&quot;: null,&#xd;
+    &quot;dateTo&quot;: null,&#xd;
+    &quot;timeInterval&quot;: 0&#xd;
+  }&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="عرض  الاشعارات والتذاكر اخر 7ايام (Default)">
-              <stringProp name="TestPlan.comments">https://ocpstg.moj.gov.local:2001
+              <stringProp name="TestPlan.comments">
 </stringProp>
               <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
               <stringProp name="HTTPSampler.port">${Port}</stringProp>
@@ -303,6 +257,102 @@
   },&#xd;
   &quot;pageNumber&quot;: 1,&#xd;
   &quot;pageSize&quot;: 1000&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="عرض  الاشعارات والتذاكر (الكل)">
+              <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+              <stringProp name="HTTPSampler.port">${Port}</stringProp>
+              <stringProp name="HTTPSampler.protocol">${protocol  type}</stringProp>
+              <stringProp name="HTTPSampler.path">/api/NotificationsMonitoring/GetNotificationTicketList</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+  &quot;searchCriteria&quot;: {&#xd;
+    &quot;notificationType&quot;: 1,&#xd;
+    &quot;subModuleId&quot;: null,&#xd;
+    &quot;criticality&quot;: null,&#xd;
+    &quot;userIds&quot;: null,&#xd;
+    &quot;dateFrom&quot;: null,&#xd;
+    &quot;dateTo&quot;: null,&#xd;
+    &quot;timeInterval&quot;: 0&#xd;
+  },&#xd;
+  &quot;pageNumber&quot;: 1,&#xd;
+  &quot;pageSize&quot;: 10&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="عرض  الاشعارات والتذاكر (اخر 30 يوم)">
+              <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+              <stringProp name="HTTPSampler.port">${Port}</stringProp>
+              <stringProp name="HTTPSampler.protocol">${protocol  type}</stringProp>
+              <stringProp name="HTTPSampler.path">/api/NotificationsMonitoring/GetNotificationTicketList</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+  &quot;searchCriteria&quot;: {&#xd;
+    &quot;notificationType&quot;: 1,&#xd;
+    &quot;subModuleId&quot;: null,&#xd;
+    &quot;criticality&quot;: null,&#xd;
+    &quot;userIds&quot;: null,&#xd;
+    &quot;dateFrom&quot;: null,&#xd;
+    &quot;dateTo&quot;: null,&#xd;
+    &quot;timeInterval&quot;: 30&#xd;
+  },&#xd;
+  &quot;pageNumber&quot;: 1,&#xd;
+  &quot;pageSize&quot;: 10&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="عرض  الاشعارات والتذاكر (اليوم)">
+              <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+              <stringProp name="HTTPSampler.port">${Port}</stringProp>
+              <stringProp name="HTTPSampler.protocol">${protocol  type}</stringProp>
+              <stringProp name="HTTPSampler.path">/api/NotificationsMonitoring/GetNotificationTicketList</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+  &quot;searchCriteria&quot;: {&#xd;
+    &quot;notificationType&quot;: 1,&#xd;
+    &quot;subModuleId&quot;: null,&#xd;
+    &quot;criticality&quot;: null,&#xd;
+    &quot;userIds&quot;: null,&#xd;
+    &quot;dateFrom&quot;: null,&#xd;
+    &quot;dateTo&quot;: null,&#xd;
+    &quot;timeInterval&quot;: 1&#xd;
+  },&#xd;
+  &quot;pageNumber&quot;: 1,&#xd;
+  &quot;pageSize&quot;: 10&#xd;
 }</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
